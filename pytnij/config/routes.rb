@@ -1,10 +1,11 @@
 Pytnij::Application.routes.draw do
   devise_for :users
 
-  resources :comments
-
-
-  resources :posts
+  resources :posts do
+    resources :comments, :only => [:create]
+  end
+  
+  root :to => 'posts#index'
 
 
   # The priority is based upon order of creation:
