@@ -1,4 +1,4 @@
-<h1>Zapytaj</h1>
+<h1><u>Zapytaj</u></h1>
 <hr />
 <hr />
 
@@ -19,7 +19,7 @@
   <tr>
   <td><B><%= post.title %></B></td>
   <td>|</td>
-  <td><%= post.email %></td>
+  <td><FONT COLOR="blue"><%= post.email %></FONT></td>
   <td>|</td>
   <td><%= link_to 'Pokaż', post %></td>
   </tr>
@@ -27,5 +27,6 @@
 </table>
 <br />
 <% if user_signed_in? %>
+<hr />
 <%= link_to 'Zadaj pytanie', new_post_path %>
 <% end %>
