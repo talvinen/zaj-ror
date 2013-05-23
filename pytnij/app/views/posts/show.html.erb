@@ -4,13 +4,18 @@
 
 <%= render :partial => @post %>
 
-<% can_blog = false
-if user_signed_in? && (current_user.email == @post.email)
-	can_blog = true
+<%
+post_owner = false
+can_comment = false
+if user_signed_in?
+	can_comment = true
+	if current_user.email == @post.email
+		post_owner = true
+	end
 end
 %>
 
-<% if can_blog %>
+<% if post_owner %>
 <%= link_to 'Edytuj', edit_post_path(@post) %> |
 <%= link_to 'Usuń', @post, :confirm => 'Czy jesteś pewien ???', :method => :delete %>
 <% end %>
@@ -23,7 +28,7 @@ end
 	<%= render :partial => @post.comments %>
 </div>
 
-<% if can_blog %>
+<% if can_comment %>
 <%= form_for [@post, Comment.new] do |f| %>
 <hr />
 <p>
