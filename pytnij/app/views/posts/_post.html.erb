@@ -1,2 +1,8 @@
-<h2><%= link_to_unless_current post.title, post %></h2>
-<%= simple_format post.body %>
+<table class="table table-striped">
+  <tr>
+    <th><%= post.title %></th>
+  </tr>
+  <tr>
+  	<td><%= post.body %></td>
+  </tr>
+</table>

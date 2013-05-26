@@ -16,17 +16,33 @@ end
 %>
 
 <% if post_owner %>
-<%= link_to 'Edytuj', edit_post_path(@post) %> |
-<%= link_to 'Usuń', @post, :confirm => 'Czy jesteś pewien ???', :method => :delete %>
+<p>
+  <button class="btn btn-warning" type="button">
+  	<%= link_to 'Edytuj', edit_post_path(@post) %>
+  </button>
+  <button class="btn btn-danger" type="button">
+  	<%= link_to 'Usuń', @post, :confirm => 'Czy jesteś pewien ???', :method => :delete %>
+  </button>
+</p>
+	
 <% end %>
 
-<hr />
+<br />
 
-<h2><u>Opinie</u></h2>
-<hr />
-<div id="comments">
-	<%= render :partial => @post.comments %>
-</div>
+<table class="table table-striped">
+  <tr>
+    <th>Opinie</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @post.comments.each do |comment| %>
+  <tr>
+  <td><FONT COLOR="green"><%= comment.body %></FONT></B></td>
+  <td><FONT COLOR="blue"><%= comment.email %></FONT></td>
+  <td>Posted <%= time_ago_in_words(comment.created_at) %> ago</td>
+  </tr>
+<% end %>
+</table>
 
 <% if can_comment %>
 <%= form_for [@post, Comment.new] do |f| %>
