@@ -50,3 +50,6 @@ rails generate migration add_email_to_post email:string
 rake db:migrate
 rails generate migration add_email_to_comment email:string
 rake db:migrate
+nano -w Gemfile ==> dodanie: gem 'less-rails' 'twitter-bootstrap-rails' 'therubyracer'
+bundle update
+rails g bootstrap:install
